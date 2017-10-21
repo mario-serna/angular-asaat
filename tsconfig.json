@@ -14,6 +14,15 @@
     "lib": [
       "es2017",
       "dom"
+    ],
+    "baseUrl": "",
+    "types": [
+      "jquery",
+      "materialize-css"
     ]
-  }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts"
+  ]
 }
