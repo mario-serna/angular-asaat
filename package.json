@@ -1,5 +1,5 @@
 {
-  "name": "angular4-asaat",
+  "name": "angular-asaat",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -24,6 +24,7 @@
     "core-js": "^2.4.1",
     "mdi": "^2.0.46",
     "ng2-materialize": "^1.6.0",
+    "ng2-webstorage": "^1.8.0",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"
   },
