@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MzToastService } from 'ng2-materialize';
+import { AuthenticationService } from './common/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,9 @@ import { MzToastService } from 'ng2-materialize';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 
-  constructor(private toastService: MzToastService) {
-  }
+  constructor(
+    public _authService: AuthenticationService
+  ) { }
 
-  showToast() {
-    this.toastService.show('Materialize works!', 4000, 'green');
-  }
 }
