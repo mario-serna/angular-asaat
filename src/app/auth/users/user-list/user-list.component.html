@@ -1,0 +1,92 @@
+<ng-container *ngIf="isLoading; else elseBlock">
+  <div class="center-align">
+    <mz-spinner [color]="'blue'" [size]="'big'"></mz-spinner>
+  </div>
+</ng-container>
+
+<ng-template #elseBlock>
+  <ng-container *ngIf="!smallResolution">
+    <div class="row">
+      <button class="col s6 m1 l1 right blue darken-2" mz-button [disabled]="!swapView" mz-tooltip [tooltip]="'Lista'" [position]="'down'"
+        [delay]="'200'" (click)="swapView=false">
+        <i mz-icon-mdi [icon]="'format-list-numbers'"></i>
+      </button>
+      <button class="col s6 m1 l1 right blue darken-2" mz-button [disabled]="swapView" mz-tooltip [tooltip]="'Tabla'" [position]="'down'"
+        [delay]="'200'" (click)="swapView=true">
+        <i mz-icon-mdi [icon]="'table'"></i>
+      </button>
+    </div>
+  </ng-container>
+
+  <div class="row">
+    <table class="bordered highlight col s12 m12 l12" *ngIf="swapView">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>Usuario</th>
+          <th>Correo</th>
+          <th>Tipo</th>
+          <th>Acceso</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let user of users">
+        <tr>
+          <td>
+            <img class="table-avatar" mz-avatar src="assets/sidenav-demo-avatar.png" routerLink="./detail/{{user.id}}">
+          </td>
+          <td>
+            <a routerLink="./detail/{{user.id}}">{{user.name}}</a>
+          </td>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.level}}</td>
+          <td>{{user.access}}</td>
+          <td>
+            <a (click)="deleteUserModal.open(); selectedUser=user">
+              <span mz-tooltip [tooltip]="'Eliminar usuario'" [position]="'down'" [delay]="200">
+                <i [class]="'red-text'" mz-icon-mdi [icon]="'close'"></i>
+              </span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <mz-collection class="col s12 m12 l12" *ngIf="!swapView">
+      <mz-collection-item [avatar]="true" *ngFor="let user of users">
+        <img mz-avatar src="assets/sidenav-demo-avatar.png" routerLink="./detail/{{user.id}}">
+        <div class="title">
+          <a routerLink="./detail/{{user.id}}">{{user.name}}</a>
+        </div>
+        <div><strong>Usuario: </strong>{{user.username}}</div>
+        <div><strong>Correo: </strong>{{user.email}}</div>
+        <div><strong>Tipo: </strong>{{user.level}}</div>
+        <div><strong>Acceso: </strong>{{user.access}}</div>
+        <a mz-secondary-content (click)="deleteUserModal.open(); selectedUser=user">
+          <span mz-tooltip [tooltip]="'Eliminar usuario'" [position]="'down'" [delay]="200">
+            <i [class]="'red-text'" mz-icon-mdi [icon]="'close'"></i>
+          </span>
+        </a>
+      </mz-collection-item>
+    </mz-collection>
+  </div>
+</ng-template>
+
+<mz-modal #deleteUserModal [fixedFooter]="true" [bottomSheet]="true">
+  <mz-modal-header>
+    ¿Desea eliminar el usuario?
+  </mz-modal-header>
+  <mz-modal-content *ngIf="selectedUser">
+    <h5>{{selectedUser.name}}</h5>
+    <p><strong>Usuario: </strong>{{selectedUser.username}}</p>
+    <p><strong>Correo: </strong>{{selectedUser.email}}</p>
+    <p><strong>Tipo: </strong>{{selectedUser.level}}</p>
+    <p><strong>Acceso: </strong>{{selectedUser.access}}</p>
+  </mz-modal-content>
+  <mz-modal-footer>
+    <button mz-button [flat]="true" mz-modal-close (click)="deleteUser()">Aceptar</button>
+    <button mz-button [flat]="true" mz-modal-close>Cancelar</button>
+  </mz-modal-footer>
+</mz-modal>

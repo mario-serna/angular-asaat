@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col s12 m12 l12">
+      <h4>Nuevo usuario</h4>
+      <form #newUserForm="ngForm" (ngSubmit)="saveUser($event)">
+        <mz-input-container class="col s12 m6 l6">
+          <input mz-input id="name" name="name" [label]="'Nombre'" #name [(ngModel)]="user.name" type="text" required autocomplete="off">
+        </mz-input-container>
+  
+        <mz-input-container class="col s12 m6 l6">
+          <input mz-input id="email" name="email" [label]="'Correo'" #email [(ngModel)]="user.email" type="email" required autocomplete="off">
+        </mz-input-container>
+  
+        <mz-input-container class="col s12 m6 l6">
+          <input mz-input id="username" name="username" [label]="'Usuario'" #username [(ngModel)]="user.username" type="text" required
+            autocomplete="off">
+        </mz-input-container>
+  
+        <mz-input-container class="col s12 m6 l6">
+          <input mz-input id="password" name="password" [label]="'Contraseña'" #password [(ngModel)]="user.password" type="text" required
+            autocomplete="off">
+        </mz-input-container>
+  
+        <mz-select-container class="col s12 m6 l6">
+          <select mz-select id="level" name="level" [label]="'Nivel'" [placeholder]="'Seleccionar nivel'" #level [(ngModel)]="user.level" required>
+            <ng-container *ngFor="let level of levels">
+              <option value="{{level.value}}">{{level.name}}</option>
+            </ng-container>
+          </select>
+        </mz-select-container>
+  
+        <div class="row" *ngIf="user">
+          <div class="card-panel col s12 m12 l12">
+            <h5>Debugging only!</h5>
+            <p>{{user | json}}</p>
+          </div>
+        </div>
+  
+        <button mz-button class="col s12 m6 l4 offset-m3 offset-l4 blue" [disabled]="!newUserForm.form.valid">
+          Enviar
+        </button>
+      </form>
+    </div>
+  </div>
+  

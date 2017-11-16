@@ -1,0 +1,14 @@
+<div class="col s12">
+  <mz-input-container [class]="'black-text'">
+    <input class="search" id="search-input" mz-input #searchBox placeholder="Buscar usuario" type="text" (focus)="showResult=true"
+      (keyup)="search(searchBox.value)">
+
+    <mz-dropdown [id]="'search-dropdow'" [align]="'left'" [belowOrigin]="true" [constrainWidth]="true" [dropdownButtonId]="'search-input'"
+      [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="true">
+      <mz-dropdown-item *ngFor="let user of users | async">
+        <a (click)="gotoDetail(user); searchBox.value=''">{{user.username}}</a>
+      </mz-dropdown-item>
+    </mz-dropdown>
+
+  </mz-input-container>
+</div>

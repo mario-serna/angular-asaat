@@ -1,0 +1,60 @@
+<div class="row">
+  <ng-container *ngIf="isLoading; else loadingBlock">
+    <div class="center-align">
+      <mz-spinner [color]="'blue'" [size]="'big'"></mz-spinner>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingBlock>
+    <div *ngIf="user; else userBlock">
+      <h4>{{user.name}}</h4>
+      <form #userForm="ngForm" (ngSubmit)="updateUser($event)">
+        <mz-input-container class="col s12 m6 l6">
+          <input mz-input id="name" name="name" [label]="'Nombre'" #name [(ngModel)]="user.name" type="text" required autocomplete="off">
+        </mz-input-container>
+
+        <mz-input-container class="col s12 m6 l6">
+          <input mz-input id="email" name="email" [label]="'Correo'" #email [(ngModel)]="user.email" type="email" required autocomplete="off"
+            disabled>
+        </mz-input-container>
+
+        <mz-input-container class="col s12 m6 l6">
+          <input mz-input id="username" name="username" [label]="'Usuario'" #username [(ngModel)]="user.username" type="text" required
+            autocomplete="off" disabled>
+        </mz-input-container>
+
+        <mz-select-container class="col s12 m6 l6">
+          <select mz-select id="level" name="level" [label]="'Nivel'" [placeholder]="'Seleccionar nivel'" #level [(ngModel)]="user.level"
+            required>
+            <ng-container *ngFor="let level of levels">
+              <option value="{{level.value}}">{{level.name}}</option>
+            </ng-container>
+          </select>
+        </mz-select-container>
+
+        <mz-checkbox-container class="col s12 m6 l6">
+          <input mz-checkbox [label]="'Acceso'" id="access" name="access" type="checkbox" #access [(ngModel)]="user.access">
+        </mz-checkbox-container>
+
+        <div class="row" *ngIf="user">
+          <div class="card-panel col s12 m12 l12">
+            <h5>Debugging only!</h5>
+            <p>{{user | json}}</p>
+          </div>
+        </div>
+
+        <button mz-button class="col s12 m6 l4 offset-m3 offset-l4 blue" [disabled]="!userForm.form.valid || userForm.form.pristine">
+          Enviar
+        </button>
+      </form>
+
+    </div>
+
+    <ng-template #userBlock>
+      <div class="card-panel">
+        <h4>El usuario no existe</h4>
+      </div>
+    </ng-template>
+
+  </ng-template>
+</div>

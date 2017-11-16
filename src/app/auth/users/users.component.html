@@ -1,0 +1,19 @@
+<div class="row">
+  <h2>Usuarios</h2>
+  <div class="row">
+    <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" routerLink="/users" [tooltip]="'<b class=\'red-text\'>Usuarios</b>'"
+      [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+      <i mz-icon-mdi [icon]="'view-list'"></i>
+    </a>
+    <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" routerLink="/users/new" [tooltip]="'Nuevo <b class=\'red-text\'>Usuario</b>'"
+      [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+      <i mz-icon-mdi [icon]="'plus'"></i>
+    </a>
+    <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" [tooltip]="'Buscar <b class=\'red-text\'>Usuario</b>'" [position]="'down'"
+      [html]="true" [delay]="500" [float]="false" (click)="showSearch=!showSearch">
+      <i mz-icon-mdi [icon]="'magnify'"></i>
+    </a>
+  </div>
+  <app-user-search *ngIf="showSearch" (onSearch)="onSearch($event)"></app-user-search>
+  <router-outlet></router-outlet>
+</div>

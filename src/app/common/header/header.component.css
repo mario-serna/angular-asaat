@@ -1,0 +1,106 @@
+ul#sidenav-demo.side-nav.fixed {
+    top: 64px !important;
+}
+
+.nav-right {
+    padding-right: 16px;
+}
+
+.nav-left {
+    padding-left: 16px;
+}
+
+.nav-avatar {
+    width: 32px;
+}
+
+.nav-right li {
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.user-view-inline {
+    display: flex;
+    width: 300px;
+    background-color: rgb(210, 240, 240);
+}
+
+.user-view {
+    padding: 32px 32px 16px;
+}
+
+.user-view-drop {
+    max-width: 300px;
+}
+
+#account-name {
+    color: black;
+    font-size: 1.2em;
+}
+
+#email {
+    color: black;
+    font-size: 1rem;
+}
+
+.name {
+    line-height: 24px;
+    font-size: 1.25em;
+}
+
+.email {
+    line-height: 24px;
+}
+
+.avatar {
+    width: 80px;
+}
+
+.avatar-small {
+    margin-right: 16px;
+    width: 40px;
+    height: 40px;
+}
+
+#btn-sidenav-menu {
+    display: inline !important;
+}
+
+
+/* For notifications */
+
+#btn-sidenav-alert {
+    border-radius: 0;
+}
+
+#btn-sidenav-alert:hover {
+    background-color: transparent;
+}
+
+#btn-sidenav-alert:active {
+    border-radius: 50%;
+}
+
+#btn-sidenav-alert:focus {
+    border-radius: 50% !important;
+}
+
+i.mdi-bell {
+    position: relative;
+    font-size: 2em;
+    cursor: pointer;
+}
+
+#notification-count {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    color: rgb(255, 255, 255);
+    background-color: red;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    line-height: 18px;
+    font-size: 10px;
+    text-align: center;
+}

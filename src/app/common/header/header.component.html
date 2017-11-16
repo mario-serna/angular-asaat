@@ -1,0 +1,105 @@
+<header>
+  <mz-sidenav [fixed]="true" [id]="'sidenav-demo'" [collapseButtonId]="'btn-sidenav-menu'" [closeOnClick]="true">
+    <mz-sidenav-header>
+      <li class="blue">
+        <div class="user-view white-text">
+          <img src="assets/sidenav-demo-avatar.png" alt="" class="avatar circle responsive-img">
+          <div class="name">{{user?.name}}</div>
+          <div class="email">{{user?.email}}</div>
+        </div>
+      </li>
+    </mz-sidenav-header>
+    <mz-sidenav-link>
+      <a routerLink="/users/detail/{{user.id}}" class="waves-effect" routerLinkActive="active">
+        <i mz-icon-mdi [icon]="'account-box'"></i>
+        <span>Perfil</span>
+      </a>
+    </mz-sidenav-link>
+    <mz-sidenav-divider></mz-sidenav-divider>
+    <mz-sidenav-link>
+      <a routerLink="/home" class="waves-effect" routerLinkActive="active">
+        <i mz-icon-mdi [icon]="'home'"></i>
+        <span>Página principal</span>
+      </a>
+    </mz-sidenav-link>
+    <mz-sidenav-link>
+      <a routerLink="/users" class="waves-effect" routerLinkActive="active">
+        <i mz-icon-mdi [icon]="'account-multiple'"></i>
+        <span>Usuarios</span>
+      </a>
+    </mz-sidenav-link>
+    <mz-sidenav-link>
+      <a routerLink="/tutores" class="waves-effect" routerLinkActive="active">
+        <i mz-icon-mdi [icon]="'clipboard'"></i>
+        <span>Tutores</span>
+      </a>
+    </mz-sidenav-link>
+    <mz-sidenav-link>
+      <a (click)="logout()" class="waves-effect">
+        <i mz-icon-mdi [icon]="'logout-variant'"></i>
+        <span>Cerrar Sesión</span>
+      </a>
+    </mz-sidenav-link>
+  </mz-sidenav>
+
+  <div class="navbar-fixed">
+    <mz-navbar [navbarClass]="'blue'">
+      <a class="brand-logo center"></a>
+      <ul class="left nav-left">
+        <li>
+          <button mz-button [float]="true" [flat]="true" [id]="'btn-sidenav-menu'">
+            <i mz-icon-mdi [align]="'right'" [icon]="'menu'"></i>
+          </button>
+        </li>
+      </ul>
+      <ul class="right nav-right">
+        <li>
+          <button mz-button (click)="checkNotifications()" [float]="true" [flat]="true" [id]="'btn-sidenav-alert'">
+            <i mz-icon-mdi [align]="'right'" [icon]="'bell'"></i>
+            <ng-container *ngIf="!isCheckNotify()">
+              <div id="notification-count">{{notifications.length}}</div>
+            </ng-container>
+          </button>
+        </li>
+        <li class="hide-on-small-only">
+          <button mz-button [float]="true" [flat]="true" [id]="'btn-user'">
+            <img src="assets/sidenav-demo-avatar.png" alt="" class=" circle responsive-img">
+          </button>
+        </li>
+      </ul>
+    </mz-navbar>
+  </div>
+
+  <mz-dropdown [id]="'dropdown-user'" [align]="'left'" [belowOrigin]="true" [constrainWidth]="false" [dropdownButtonId]="'btn-user'"
+    [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="false">
+    <mz-dropdown-item class="user-view-drop">
+      <a class="user-view-inline" routerLink="/users/detail/{{user.id}}" routerLinkActive="active">
+        <img src="assets/sidenav-demo-avatar.png" alt="" class="avatar-small circle responsive-img">
+        <div>
+          <div id="account-name">{{user?.name}}</div>
+          <div id="email">{{user?.email}}</div>
+        </div>
+      </a>
+    </mz-dropdown-item>
+    <mz-dropdown-divider></mz-dropdown-divider>
+    <mz-dropdown-item>
+      <a (click)="logout()" class="waves-effect">
+        <i mz-icon-mdi [icon]="'logout-variant'"></i>
+        <span>Cerrar Sesión</span>
+      </a>
+    </mz-dropdown-item>
+  </mz-dropdown>
+
+  <mz-dropdown [id]="'dropdown-notification'" [align]="'left'" [belowOrigin]="true" [constrainWidth]="false" [dropdownButtonId]="'btn-sidenav-alert'"
+    [gutter]="true" [hover]="false" [inDuration]="300" [outDuration]="300" [stopPropagation]="false">
+    <mz-dropdown-item *ngFor="let item of notifications">
+      <a href="#!">
+        <mz-card [backgroundClass]="item.color" [textClass]="'white-text'" [hoverable]="true">
+          <mz-card-content>
+            {{item.title}} {{item.value}} - {{item.time}}
+          </mz-card-content>
+        </mz-card>
+      </a>
+    </mz-dropdown-item>
+  </mz-dropdown>
+</header>
