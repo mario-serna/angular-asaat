@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../../auth/common-services/http.service';
-import { SessionStorageService } from 'ng2-webstorage';
+import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
 import 'rxjs/add/operator/map';
 import { AppConfig } from '../../config/app.config';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class AuthenticationService {
   hasSession = false;
+  hasAccess = false;
   user;
   authBaseUrl: string = AppConfig.AUTH_SERVER_URL;
   public _dataSource = new BehaviorSubject<boolean>(false);
@@ -15,19 +16,21 @@ export class AuthenticationService {
 
   constructor(
     public _http: HttpService,
-    public _locker: SessionStorageService
+    public _localService: LocalStorageService,
+    public _sessionService: SessionStorageService
   ) { }
 
   public isLoggedIn() {
-    const user = this._locker.retrieve('user');
+    const user = this._sessionService.retrieve('user');
     if (!!user) {
       this.user = user;
+      this.hasAccess = user.access;
       this.hasSession = true;
     }
     return this.hasSession;
   }
 
-  public logIn(username: string, password: string) {
+  public logIn(username: string, password: string, remember_token?: boolean) {
     const url = `${this.authBaseUrl}/users/login`;
 
     return this._http.post(url, {
@@ -39,7 +42,8 @@ export class AuthenticationService {
   public logOut() {
     this.user = null;
     this.hasSession = false;
-    this._locker.clear('user');
+    this._localService.clear('user');
+    this._sessionService.clear('user');
     this._dataSource.next(false);
   }
 

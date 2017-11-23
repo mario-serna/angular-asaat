@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+
+@media screen and (min-width: 993px){
+    .main{
+        margin-left: 300px !important;
+    }
+
+    .navbar-main{
+        margin-left: 300px !important;
+        background-color: #2196f3 !important;
+    }
+}
+
+.navbar-main{
+    background-color: #2196f3 !important;
+}
+
+/* label focus color */
+
+.input-field input:focus+label {
+    color: #311b92 !important;
+}
+
+
+/* label underline focus color */
+
+.row .input-field input:focus {
+    border-bottom: 1px solid #311b92 !important;
+    box-shadow: 0 1px 0 0 #311b92 !important
+}
+
+.avatar-small {
+    margin-right: 16px !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.account-name {
+    color: black;
+    font-size: 1.2em;
+}
+
+.account-email {
+    color: black;
+    font-size: 1rem;
+}

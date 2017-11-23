@@ -4,7 +4,7 @@
       <li class="blue">
         <div class="user-view white-text">
           <img src="assets/sidenav-demo-avatar.png" alt="" class="avatar circle responsive-img">
-          <div class="name">{{user?.name}}</div>
+          <div class="name">{{user?.fullname}}</div>
           <div class="email">{{user?.email}}</div>
         </div>
       </li>
@@ -29,7 +29,7 @@
       </a>
     </mz-sidenav-link>
     <mz-sidenav-link>
-      <a routerLink="/tutores" class="waves-effect" routerLinkActive="active">
+      <a routerLink="/tutors" class="waves-effect" routerLinkActive="active">
         <i mz-icon-mdi [icon]="'clipboard'"></i>
         <span>Tutores</span>
       </a>
@@ -41,12 +41,14 @@
       </a>
     </mz-sidenav-link>
   </mz-sidenav>
-
+  
   <div class="navbar-fixed">
-    <mz-navbar [navbarClass]="'blue'">
-      <a class="brand-logo center"></a>
+    <mz-navbar [navbarClass]="'navbar-main'">
+      <a class="brand-logo">
+        {{title}}
+      </a>
       <ul class="left nav-left">
-        <li>
+        <li class="hide-on-large-only	">
           <button mz-button [float]="true" [flat]="true" [id]="'btn-sidenav-menu'">
             <i mz-icon-mdi [align]="'right'" [icon]="'menu'"></i>
           </button>
@@ -76,7 +78,7 @@
       <a class="user-view-inline" routerLink="/users/detail/{{user.id}}" routerLinkActive="active">
         <img src="assets/sidenav-demo-avatar.png" alt="" class="avatar-small circle responsive-img">
         <div>
-          <div id="account-name">{{user?.name}}</div>
+          <div id="account-name">{{user?.fullname}}</div>
           <div id="email">{{user?.email}}</div>
         </div>
       </a>

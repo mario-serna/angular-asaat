@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class HeaderComponent implements OnInit, OnDestroy {
-  title = 'ASAAT';
+  title = 'Bienvenido';
   user: any;
+  routeData: any;
 
   notifications = [
     { title: 'Test1', value: 'Value1', color: 'red', time: '07:22:00' },
@@ -23,12 +25,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     public router: Router,
+    public route: ActivatedRoute,
     public _authService: AuthenticationService
   ) { }
 
   ngOnInit() {
     this.user = this._authService.getUser();
-    // console.log(this.user);
+    this.routeData = this.router.events.subscribe((data) => {
+      if (data instanceof RoutesRecognized) {
+        this.title = data.state.root.firstChild.data.title;
+      }
+    });
   }
 
   public logout() {

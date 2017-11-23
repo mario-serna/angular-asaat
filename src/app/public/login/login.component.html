@@ -1,57 +1,70 @@
-<div class="">
-  <div class="row">
-    <div class="col s12 m6 l4 offset-m3 offset-l4">
-      <h4 class="center-align">{{app_name}}</h4>
-      <div class="divider"></div>
-      <div class="section">
-        <form #loginForm="ngForm" (ngSubmit)="onSubmit($event)">
-          <mz-input-container>
-            <i mz-icon-mdi mz-input-prefix [icon]="'account'">
-            </i>
-            <input mz-input id="username" name="username" [label]="'Usuario'" placeholder="Ingresa tu nombre de usuario" type="text"
-              autocomplete="off" required [(ngModel)]="user.username" #username="ngModel">
-          </mz-input-container>
-
-          <mz-input-container>
-            <i mz-icon-mdi mz-input-prefix [icon]="'key-variant'">
-            </i>
-            <input mz-input id="password" name="password" [label]="'Contraseña'" placeholder="*****" type="password" required [(ngModel)]="user.password"
-              #password="ngModel">
-          </mz-input-container>
-
-          <div class="row">
-            <mz-checkbox-container class="col s12 m12 l12">
-              <input mz-checkbox [label]="'Recordarme'" id="remember-token" type="checkbox">
-            </mz-checkbox-container>
+<div class="outer">
+  <div class="middle">
+    <div class="row">
+      <div class="col s12 m6 l4 offset-m3 offset-l4">
+        <div class="z-depth-4">
+          <div class="card-panel white-text center-align deep-purple darken-4">
+            <h4 class="title">{{app_name}}</h4>
           </div>
+          <div class="card-panel">
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit($event)">
+              <mz-input-container>
+                <i mz-icon-mdi mz-input-prefix [icon]="'account'">
+                </i>
+                <input mz-input id="username" name="username" [label]="'Usuario'" placeholder="Ingresa tu nombre de usuario" type="text"
+                  autocomplete="off" required [(ngModel)]="user.username" #username="ngModel">
+              </mz-input-container>
 
-          <div class="row">
-            <button class="col s12 m12 l12" type="submit" mz-button [disabled]="!loginForm.form.valid || !!sending">
-              Iniciar Sesión
-            </button>
-          </div>
+              <mz-input-container>
+                <i mz-icon-mdi mz-input-prefix [icon]="'key-variant'">
+                </i>
+                <input mz-input id="password" name="password" [label]="'Contraseña'" placeholder="*****" type="password" required [(ngModel)]="user.password"
+                  #password="ngModel">
+              </mz-input-container>
 
-          <div class="row" *ngIf="sending">
-            <mz-progress [backgroundClass]="'blue lighten-4'" [progressClass]="'teal'"></mz-progress>
-          </div>
+              <div class="row" *ngIf="false">
+                <mz-checkbox-container class="col s12 m12 l12">
+                  <input mz-checkbox [label]="'Recordarme'" id="remember-token" name="remember_token" type="checkbox" [(ngModel)]="user.remember_token"
+                    #remember_token="ngModel">
+                </mz-checkbox-container>
+              </div>
 
-          <div class="row" *ngIf="!sending">
-            <div *ngIf="response">
-              <mz-card [backgroundClass]="'red darken-4'" [textClass]="'white-text'" [hoverable]="true" *ngIf="response.status === 406">
-                <mz-card-content>
-                  El usuario o la contraseña no son correctos!
-                </mz-card-content>
-              </mz-card>
-              <mz-card [backgroundClass]="'red darken-4'" [textClass]="'white-text'" [hoverable]="true" *ngIf="response.status !== 406">
-                <mz-card-content>
-                  Ocurrió un problema en el servidor, intentelo más tarde.
-                </mz-card-content>
-              </mz-card>
-            </div>
+              <div class="row" [hidden]="sending">
+                <button class="col s12 m12 l12 blue" type="submit" mz-button [disabled]="!loginForm.form.valid || !!sending">
+                  Iniciar Sesión
+                </button>
+              </div>
+
+              <ng-container *ngIf="sending">
+                <div class="row">
+                  <mz-progress [backgroundClass]="'blue lighten-4'" [progressClass]="'teal'"></mz-progress>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="!sending">
+                <div class="row" *ngIf="response">
+                  <mz-card [backgroundClass]="'red darken-4'" [textClass]="'white-text'" [hoverable]="true" *ngIf="response.code == 2">
+                    <mz-card-content>
+                      Acceso no permitido para esta cuenta!.
+                      <br> Contacte al administrador para más información.
+                    </mz-card-content>
+                  </mz-card>
+                  <mz-card [backgroundClass]="'red darken-4'" [textClass]="'white-text'" [hoverable]="true" *ngIf="response.code == 1">
+                    <mz-card-content>
+                      El usuario o la contraseña no son correctos!
+                    </mz-card-content>
+                  </mz-card>
+                  <mz-card [backgroundClass]="'red darken-4'" [textClass]="'white-text'" [hoverable]="true" *ngIf="response.status == 0">
+                    <mz-card-content>
+                      Ocurrió un problema en el servidor, intentelo más tarde.
+                    </mz-card-content>
+                  </mz-card>
+                </div>
+              </ng-container>
+            </form>
           </div>
-        </form>
+        </div>
       </div>
-      <div class="divider"></div>
     </div>
   </div>
 </div>

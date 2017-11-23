@@ -11,7 +11,7 @@ const appRoutes: Routes = [
         path: 'login', component: LoginComponent, canActivate: [PublicGuard]
     },
     {
-        path: 'home', component: HomeComponent, data: { name: 'Página principal' }, canActivate: [AuthGuard]
+        path: 'home', component: HomeComponent, data: { title: 'Home' }, canActivate: [AuthGuard]
     },
     {
         path: '', redirectTo: '/login', pathMatch: 'full'

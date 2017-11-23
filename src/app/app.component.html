@@ -1,5 +1,5 @@
-<app-header *ngIf="_authService.isLoggedIn()"></app-header>
-<main [class.main]="_authService.isLoggedIn()">
+<app-header *ngIf="_authService.isLoggedIn() && _authService.hasAccess"></app-header>
+<main [class.main]="_authService.isLoggedIn() && _authService.hasAccess">
   <div class="container-fluid">
     <router-outlet></router-outlet>
   </div>
