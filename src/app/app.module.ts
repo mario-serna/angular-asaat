@@ -31,6 +31,7 @@ import { UsersModule } from './auth/users/users.module';
 import { TutorsModule } from './auth/tutors/tutors.module';
 import { SectionsModule } from './auth/sections/sections.module';
 import { StudentsModule } from './auth/students/students.module';
+import { AdminModule } from './auth/admin/admin.module';
 
 @NgModule({
   imports: [

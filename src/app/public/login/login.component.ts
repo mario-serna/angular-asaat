@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
         this.sending = false;
       },
       err => {
-        // console.error(err);
-        this.response = JSON.parse(err._body);
+        console.error(err);
+        // this.response = JSON.parse(err._body);
         this._authService.wasLoginSuccessful(false);
         this._authService.hasSession = false;
         this._authService.hasAccess = false;

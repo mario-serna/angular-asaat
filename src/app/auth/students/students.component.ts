@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit {
+  showSearch = false;
   validUrl = false;
   constructor(
     public router: Router
