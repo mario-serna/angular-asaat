@@ -37,12 +37,12 @@
             <img class="table-avatar" mz-avatar src="assets/sidenav-demo-avatar.png" routerLink="./detail/{{user.id}}">
           </td>
           <td>
-            <a routerLink="./detail/{{user.id}}">{{user.name}}</a>
+            <a routerLink="./detail/{{user.id}}">{{user.fullname | capitalize}}</a>
           </td>
           <td>{{user.username}}</td>
           <td>{{user.email}}</td>
-          <td>{{user.level}}</td>
-          <td>{{user.access}}</td>
+          <td>{{user.level | role}}</td>
+          <td>{{user.access | access}}</td>
           <td>
             <a (click)="deleteUserModal.open(); selectedUser=user">
               <span mz-tooltip [tooltip]="'Eliminar usuario'" [position]="'down'" [delay]="200">
@@ -58,12 +58,16 @@
       <mz-collection-item [avatar]="true" *ngFor="let user of users">
         <img mz-avatar src="assets/sidenav-demo-avatar.png" routerLink="./detail/{{user.id}}">
         <div class="title">
-          <a routerLink="./detail/{{user.id}}">{{user.name}}</a>
+          <a routerLink="./detail/{{user.id}}">{{user.fullname | capitalize}}</a>
         </div>
-        <div><strong>Usuario: </strong>{{user.username}}</div>
-        <div><strong>Correo: </strong>{{user.email}}</div>
-        <div><strong>Tipo: </strong>{{user.level}}</div>
-        <div><strong>Acceso: </strong>{{user.access}}</div>
+        <div>
+          <strong>Usuario: </strong>{{user.username}}</div>
+        <div>
+          <strong>Correo: </strong>{{user.email}}</div>
+        <div>
+          <strong>Tipo: </strong>{{user.level | role}}</div>
+        <div>
+          <strong>Acceso: </strong>{{user.access | access}}</div>
         <a mz-secondary-content (click)="deleteUserModal.open(); selectedUser=user">
           <span mz-tooltip [tooltip]="'Eliminar usuario'" [position]="'down'" [delay]="200">
             <i [class]="'red-text'" mz-icon-mdi [icon]="'close'"></i>
@@ -79,11 +83,15 @@
     ¿Desea eliminar el usuario?
   </mz-modal-header>
   <mz-modal-content *ngIf="selectedUser">
-    <h5>{{selectedUser.name}}</h5>
-    <p><strong>Usuario: </strong>{{selectedUser.username}}</p>
-    <p><strong>Correo: </strong>{{selectedUser.email}}</p>
-    <p><strong>Tipo: </strong>{{selectedUser.level}}</p>
-    <p><strong>Acceso: </strong>{{selectedUser.access}}</p>
+    <h5>{{selectedUser.fullname}}</h5>
+    <p>
+      <strong>Usuario: </strong>{{selectedUser.username}}</p>
+    <p>
+      <strong>Correo: </strong>{{selectedUser.email}}</p>
+    <p>
+      <strong>Tipo: </strong>{{selectedUser.level}}</p>
+    <p>
+      <strong>Acceso: </strong>{{selectedUser.access}}</p>
   </mz-modal-content>
   <mz-modal-footer>
     <button mz-button [flat]="true" mz-modal-close (click)="deleteUser()">Aceptar</button>

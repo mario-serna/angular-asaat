@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col s12 m12 l12">
+    <h4 *ngIf="!tutorData">Nuevo tutor</h4>
+    <form #newForm="ngForm" (ngSubmit)="save($event)">
+      <mz-input-container class="col s12 m12 l12">
+        <input mz-input id="worker_number" name="worker_number" [label]="'Número de trabajador *'" #name [(ngModel)]="tutor.worker_number"
+          type="text" required autocomplete="off" length="9" minlength="9" maxlength="9">
+      </mz-input-container>
+
+      <mz-input-container class="col s12 m4 l4">
+        <input mz-input id="name" name="name" [label]="'Nombre *'" #name [(ngModel)]="tutor.name" type="text" required autocomplete="off">
+      </mz-input-container>
+
+      <mz-input-container class="col s12 m4 l4">
+        <input mz-input id="lastname" name="lastname" [label]="'Paterno *'" #lastname [(ngModel)]="tutor.lastname" type="text" required
+          autocomplete="off">
+      </mz-input-container>
+
+      <mz-input-container class="col s12 m4 l4">
+        <input mz-input id="m_lastname" name="m_lastname" [label]="'Materno'" #m_lastname [(ngModel)]="tutor.m_lastname" type="text"
+          autocomplete="off">
+      </mz-input-container>
+
+      <mz-input-container class="col s12 m6 l6">
+        <input mz-input id="email" name="email" [label]="'Correo *'" #email [(ngModel)]="user.email" type="email" required autocomplete="off">
+      </mz-input-container>
+
+      <mz-input-container class="col s12 m6 l6">
+        <input mz-input id="alt_email" name="alt_email" [label]="'Correo alternativo'" #alt_email [(ngModel)]="tutor.alt_email" type="email"
+          autocomplete="off">
+      </mz-input-container>
+
+      <div class="row" *ngIf="tutor" hidden>
+        <div class="card-panel col s12 m12 l12 hide-on-small-only">
+          <h5>Debugging only!</h5>
+          <p>{{tutor | json}}</p>
+          <p>{{user | json}}</p>
+        </div>
+      </div>
+
+      <button mz-button class="col s12 m6 l4 offset-m3 offset-l4 blue" [disabled]="!newForm.form.valid">
+        Enviar
+      </button>
+    </form>
+  </div>
+</div>

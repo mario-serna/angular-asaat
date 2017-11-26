@@ -7,15 +7,15 @@
 
   <ng-template #loadingBlock>
     <div *ngIf="user; else userBlock">
-      <h4>{{user.name}}</h4>
+      <h4>{{user.fullname}}</h4>
       <form #userForm="ngForm" (ngSubmit)="updateUser($event)">
         <mz-input-container class="col s12 m6 l6">
-          <input mz-input id="name" name="name" [label]="'Nombre'" #name [(ngModel)]="user.name" type="text" required autocomplete="off">
+          <input mz-input id="fullname" name="fullname" [label]="'Nombre'" #fullname [(ngModel)]="user.fullname" type="text" required autocomplete="off">
         </mz-input-container>
 
         <mz-input-container class="col s12 m6 l6">
           <input mz-input id="email" name="email" [label]="'Correo'" #email [(ngModel)]="user.email" type="email" required autocomplete="off"
-            disabled>
+            >
         </mz-input-container>
 
         <mz-input-container class="col s12 m6 l6">
@@ -37,7 +37,7 @@
         </mz-checkbox-container>
 
         <div class="row" *ngIf="user">
-          <div class="card-panel col s12 m12 l12">
+          <div class="card-panel col s12 m12 l12 hide-on-small-only">
             <h5>Debugging only!</h5>
             <p>{{user | json}}</p>
           </div>

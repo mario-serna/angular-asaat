@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col s12 m12 l12">
+    <h4 *ngIf="!sectionData">Nueva sección</h4>
+    <form #newForm="ngForm" (ngSubmit)="save($event)">
+      <mz-input-container class="col s12 m12 l12" *ngIf="section.key">
+        <input mz-input id="key" name="key" [label]="'Clave'" placeholder="Auto-generable" #key [(ngModel)]="section.key" type="text" autocomplete="off"
+          length="11" minlength="11" maxlength="11" disabled>
+      </mz-input-container>
+
+      <mz-select-container class="col s12 m6 l6">
+        <select mz-select id="number" name="number" [label]="'Número'" [placeholder]="'Seleccionar número'" #number [(ngModel)]="section.number"
+          required>
+          <ng-container *ngFor="let item of numbers">
+            <option value="{{item}}">{{item}}</option>
+          </ng-container>
+        </select>
+      </mz-select-container>
+
+      <mz-input-container class="col s12 m6 l6">
+        <input mz-input id="generation" name="generation" [label]="'Generación'" #generation [(ngModel)]="section.generation" type="text"
+          length="4" maxlength="4" required autocomplete="off">
+      </mz-input-container>
+
+      <mz-select-container class="col s12 m6 l6">
+        <select mz-select id="carrer" name="carrer" [label]="'Carrera'" [placeholder]="'Seleccionar carrera'" #carrer [(ngModel)]="section.carrer_id"
+          (ngModelChange)="setPrograms($event)" required>
+          <ng-container *ngFor="let item of data">
+            <option value="{{item.id}}">{{item.name}}</option>
+          </ng-container>
+        </select>
+      </mz-select-container>
+
+      <mz-select-container class="col s12 m6 l6">
+        <select mz-select id="program" name="program" [label]="'Programa'" [placeholder]="'Seleccionar programa'" #program [(ngModel)]="section.program"
+          required [disabled]="!section.carrer">
+          <ng-container *ngIf="section.carrer">
+            <ng-container *ngFor="let item of programs">
+              <option value="{{item.name}}{{item.type}}">{{item.name}} - {{item.type}}</option>
+            </ng-container>
+          </ng-container>
+        </select>
+      </mz-select-container>
+
+      <div class="row" *ngIf="section">
+        <div class="card-panel col s12 m12 l12 hide-on-small-only">
+          <h5>Debugging only!</h5>
+          <p>{{tutor | json}}</p>
+          <p>{{section | json}}</p>
+          <p *ngIf="section.carrer">{{section.carrer.name}}</p>
+        </div>
+      </div>
+
+      <button mz-button class="col s12 m6 l4 offset-m3 offset-l4 blue" [disabled]="!newForm.form.valid">
+        Enviar
+      </button>
+    </form>
+  </div>
+</div>

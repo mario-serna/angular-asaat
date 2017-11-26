@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="row" *ngIf="validUrl">
+      <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" routerLink="./students" [tooltip]="'<b class=\'yellow-text\'>Alumnos</b>'"
+        [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+        <i mz-icon-mdi [icon]="'view-list'"></i>
+      </a>
+      <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" routerLink="./students/new" [tooltip]="'Nuevo <b class=\'yellow-text\'>Alumno</b>'"
+        [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+        <i mz-icon-mdi [icon]="'plus'"></i>
+      </a>
+      <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" [tooltip]="'Buscar <b class=\'red-text\'>Tutor</b>'" [position]="'down'"
+        [html]="true" [delay]="500" [float]="false" (click)="showSearch=!showSearch">
+        <i mz-icon-mdi [icon]="'magnify'"></i>
+      </a>
+    </div>
+    <div class="row" *ngIf="!validUrl">
+      <a mz-button mz-tooltip class="blue darken-4 col s12 m12 l12" [tooltip]="'Buscar <b class=\'red-text\'>Tutor</b>'" [position]="'down'"
+        [html]="true" [delay]="500" [float]="false" (click)="showSearch=!showSearch">
+        <i mz-icon-mdi [icon]="'magnify'"></i>
+      </a>
+    </div>
+    <app-student-search *ngIf="showSearch" (onSearch)="onSearch($event)"></app-student-search>
+    <router-outlet></router-outlet>
+  </div>
+  

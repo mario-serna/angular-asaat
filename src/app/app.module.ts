@@ -26,7 +26,11 @@ import { NotFoundComponent } from './common/not-found/not-found.component';
 import { HomeComponent } from './auth/home/home.component';
 
 // Modules
+import { SharedCommonsModule } from './common/shared-commons.module';
 import { UsersModule } from './auth/users/users.module';
+import { TutorsModule } from './auth/tutors/tutors.module';
+import { SectionsModule } from './auth/sections/sections.module';
+import { StudentsModule } from './auth/students/students.module';
 
 @NgModule({
   imports: [
@@ -36,7 +40,11 @@ import { UsersModule } from './auth/users/users.module';
     MaterializeModule,
     FormsModule,
     Ng2Webstorage,
+    SharedCommonsModule,
     UsersModule,
+    TutorsModule,
+    SectionsModule,
+    StudentsModule,
     AppRoutingModule
   ],
   declarations: [

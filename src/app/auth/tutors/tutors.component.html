@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="row">
+    <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" routerLink="/tutors" [tooltip]="'<b class=\'red-text\'>Tutores</b>'"
+      [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+      <i mz-icon-mdi [icon]="'view-list'"></i>
+    </a>
+    <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" routerLink="/tutors/new" [tooltip]="'Nuevo <b class=\'red-text\'>Tutor</b>'"
+      [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+      <i mz-icon-mdi [icon]="'plus'"></i>
+    </a>
+    <a mz-button mz-tooltip class="blue darken-4 col s4 m4 l4" [tooltip]="'Buscar <b class=\'red-text\'>Tutor</b>'" [position]="'down'"
+      [html]="true" [delay]="500" [float]="false" (click)="showSearch=!showSearch">
+      <i mz-icon-mdi [icon]="'magnify'"></i>
+    </a>
+  </div>
+  <app-tutor-search *ngIf="showSearch" (onSearch)="onSearch($event)"></app-tutor-search>
+  <router-outlet></router-outlet>
+</div>

@@ -10,20 +10,21 @@ const usersRoutes: Routes = [
   {
     path: '',
     component: UsersComponent,
+    data: { title: 'Usuarios' },
     canActivate: [AuthGuard],
     children: [
       {
-        path: '',
+        path: 'users',
         canActivateChild: [AuthGuard],
         children: [
           {
-            path: 'users', component: UserListComponent
+            path: '', component: UserListComponent
           },
           {
-            path: 'users/new', component: UserNewComponent
+            path: 'new', component: UserNewComponent
           },
           {
-            path: 'users/detail/:id', component: UserDetailComponent
+            path: 'detail/:id', component: UserDetailComponent
           }
         ]
       }

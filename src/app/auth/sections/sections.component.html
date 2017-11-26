@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="row" *ngIf="validUrl">
+    <a mz-button mz-tooltip class="blue darken-4 col s6 m6 l6" routerLink="./sections" [tooltip]="'<b class=\'yellow-text\'>Secciones</b>'"
+      [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+      <i mz-icon-mdi [icon]="'view-list'"></i>
+    </a>
+    <a mz-button mz-tooltip class="blue darken-4 col s6 m6 l6" routerLink="./sections/new" [tooltip]="'Nueva <b class=\'yellow-text\'>Sección</b>'"
+      [position]="'down'" [html]="true" [delay]="500" [float]="false" (click)="showSearch=false">
+      <i mz-icon-mdi [icon]="'plus'"></i>
+    </a>
+  </div>
+  <router-outlet></router-outlet>
+</div>

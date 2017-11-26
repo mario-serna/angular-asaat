@@ -1,0 +1,55 @@
+<div class="row">
+  <form action="#" class="col s12 m12 l12">
+    <h5>Cargar archivo de tutores</h5>
+    <div class="file-field input-field">
+      <div class="btn blue flat darken-2">
+        <i mz-icon-mdi [align]="'center'" [icon]="'file-excel'" [size]="'36px'">
+        </i>
+        <input type="file" accept=".xls,.xlsx" (change)="onFileChange($event)">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+  </form>
+  <div class="row" *ngIf="data">
+    <mz-collection class="col s12 m12 l12">
+      <mz-collection-header>
+        <h5>Tutores</h5>
+      </mz-collection-header>
+      <mz-collection-item *ngFor="let item of data">
+        <app-tutor-data [tutor]="item"></app-tutor-data>
+      </mz-collection-item>
+    </mz-collection>
+  </div>
+  <div class="row" *ngIf="false">
+    <table class="striped highlight">
+      <thead>
+        <tr>
+          <th>Matrícula</th>
+          <th>Nombre</th>
+          <th>Nivel</th>
+          <th>Un. Académica</th>
+          <th>Carrera</th>
+          <th>Campus</th>
+          <th>Promedio</th>
+          <th>Avance</th>
+          <th>Ult. Periodo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data">
+          <td>{{item.matricula}}</td>
+          <td>{{item.nombre}}</td>
+          <td>{{item.nivel}}</td>
+          <td>{{item.un_academica}}</td>
+          <td>{{item.carrera}}</td>
+          <td>{{item.campus}}</td>
+          <td>{{item.promedio}}</td>
+          <td>{{item.avance}}</td>
+          <td>{{item.ult_periodo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

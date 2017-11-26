@@ -1,0 +1,28 @@
+<div class="row">
+  <ng-container *ngIf="isLoading; else loadingBlock">
+    <div class="center-align">
+      <mz-spinner [color]="'blue'" [size]="'big'"></mz-spinner>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingBlock>
+    <div *ngIf="section; else noContentBlock">
+      <h4>{{section.key}}</h4>
+      <mz-tab [fixedTabWidth]="'true'">
+        <mz-tab-item [label]="'Alumnos'">
+          <router-outlet></router-outlet>
+        </mz-tab-item>
+        <mz-tab-item [label]="'Editar sección'">
+          <app-section-form [sectionData]="sectionData"></app-section-form>
+        </mz-tab-item>
+      </mz-tab>
+    </div>
+
+    <ng-template #noContentBlock>
+      <div class="card-panel">
+        <h4>La sección no existe</h4>
+      </div>
+    </ng-template>
+
+  </ng-template>
+</div>

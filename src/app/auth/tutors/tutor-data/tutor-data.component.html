@@ -1,0 +1,30 @@
+{{tutor.worker_number}} {{tutor.fullname | capitalize}} {{now}}
+
+<a mz-secondary-content>
+  <ng-container *ngIf="loading; else elseBlock">
+    <div class="preloader-wrapper small active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #elseBlock>
+    <a *ngIf="!exist">
+      <span class="badge blue white-text">Nuevo</span>
+    </a>
+    <a mz-tooltip [tooltip]="option.tooltip" [position]="'left'" [html]="true" [delay]="300" (click)="save()" *ngIf="!saved">
+      <i mz-icon-mdi [icon]="option.icon"></i>
+    </a>
+    <a [style.cursor]="'pointer'" mz-tooltip [tooltip]="option.tooltip" [html]="true" [position]="'left'" [delay]="300" *ngIf="saved">
+      <i mz-icon-mdi [icon]="option.icon"></i>
+    </a>
+  </ng-template>
+</a>

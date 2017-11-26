@@ -3,7 +3,7 @@
       <h4>Nuevo usuario</h4>
       <form #newUserForm="ngForm" (ngSubmit)="saveUser($event)">
         <mz-input-container class="col s12 m6 l6">
-          <input mz-input id="name" name="name" [label]="'Nombre'" #name [(ngModel)]="user.name" type="text" required autocomplete="off">
+          <input mz-input id="fullname" name="fullname" [label]="'Nombre'" #fullname [(ngModel)]="user.fullname" type="text" required autocomplete="off">
         </mz-input-container>
   
         <mz-input-container class="col s12 m6 l6">
@@ -29,9 +29,9 @@
         </mz-select-container>
   
         <div class="row" *ngIf="user">
-          <div class="card-panel col s12 m12 l12">
+          <div class="card-panel col s12 m12 l12 hide-on-small-only">
             <h5>Debugging only!</h5>
-            <p>{{user | json}}</p>
+            <p class="flow-text">{{user | json}}</p>
           </div>
         </div>
   

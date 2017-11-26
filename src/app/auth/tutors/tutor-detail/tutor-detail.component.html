@@ -1,0 +1,28 @@
+<div class="row">
+  <ng-container *ngIf="isLoading; else loadingBlock">
+    <div class="center-align">
+      <mz-spinner [color]="'blue'" [size]="'big'"></mz-spinner>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingBlock>
+    <div *ngIf="tutor; else tutorBlock">
+      <h4>{{user.fullname | capitalize}}</h4>
+      <mz-tab [fixedTabWidth]="'true'">
+        <mz-tab-item [label]="'Secciones'">
+          <router-outlet></router-outlet>
+        </mz-tab-item>
+        <mz-tab-item [label]="'Editar tutor'">
+          <app-tutor-form [tutorData]="tutorData"></app-tutor-form>
+        </mz-tab-item>
+      </mz-tab>
+    </div>
+
+    <ng-template #tutorBlock>
+      <div class="card-panel">
+        <h4>El tutor no existe</h4>
+      </div>
+    </ng-template>
+
+  </ng-template>
+</div>

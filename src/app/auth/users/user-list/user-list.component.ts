@@ -58,7 +58,7 @@ export class UserListComponent implements OnInit {
   deleteUser() {
     this._userService.deleteUser(this.selectedUser.id).subscribe(
       (data) => {
-        this.users.filter(user => user !== data);
+        this.users = this.users.filter(user => user.id !== data.id);
         this.selectedUser = null;
         this.toast.show(`El usuario ${data.username} ha sido eliminado!`, 4000, 'green');
       }, err => {

@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this._authService.getUser();
+    this.title = `Bienvenido ${this.user.fullname}!`;
     this.routeData = this.router.events.subscribe((data) => {
       if (data instanceof RoutesRecognized) {
         this.title = data.state.root.firstChild.data.title;

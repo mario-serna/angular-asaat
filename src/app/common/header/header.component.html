@@ -1,5 +1,5 @@
 <header>
-  <mz-sidenav [fixed]="true" [id]="'sidenav-demo'" [collapseButtonId]="'btn-sidenav-menu'" [closeOnClick]="true">
+  <mz-sidenav [fixed]="true" [id]="'sidenav-demo'" [collapseButtonId]="'btn-sidenav-menu'" [closeOnClick]="true" [width]="250">
     <mz-sidenav-header>
       <li class="blue">
         <div class="user-view white-text">
@@ -30,18 +30,31 @@
     </mz-sidenav-link>
     <mz-sidenav-link>
       <a routerLink="/tutors" class="waves-effect" routerLinkActive="active">
-        <i mz-icon-mdi [icon]="'clipboard'"></i>
+        <i mz-icon-mdi [icon]="'briefcase'"></i>
         <span>Tutores</span>
       </a>
     </mz-sidenav-link>
     <mz-sidenav-link>
+      <a routerLink="/sections" class="waves-effect" routerLinkActive="active">
+        <i mz-icon-mdi [icon]="'pound-box'"></i>
+        <span>Secciones</span>
+      </a>
+    </mz-sidenav-link>
+    <mz-sidenav-link>
+      <a routerLink="/students" class="waves-effect" routerLinkActive="active">
+        <i mz-icon-mdi [icon]="'school'"></i>
+        <span>Alumnos</span>
+      </a>
+    </mz-sidenav-link>
+    <mz-sidenav-divider></mz-sidenav-divider>
+    <mz-sidenav-link>
       <a (click)="logout()" class="waves-effect">
-        <i mz-icon-mdi [icon]="'logout-variant'"></i>
+        <i mz-icon-mdi [icon]="'login-variant'"></i>
         <span>Cerrar Sesión</span>
       </a>
     </mz-sidenav-link>
   </mz-sidenav>
-  
+
   <div class="navbar-fixed">
     <mz-navbar [navbarClass]="'navbar-main'">
       <a class="brand-logo">
@@ -55,7 +68,7 @@
         </li>
       </ul>
       <ul class="right nav-right">
-        <li>
+        <li hidden>
           <button mz-button (click)="checkNotifications()" [float]="true" [flat]="true" [id]="'btn-sidenav-alert'">
             <i mz-icon-mdi [align]="'right'" [icon]="'bell'"></i>
             <ng-container *ngIf="!isCheckNotify()">

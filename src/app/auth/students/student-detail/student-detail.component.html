@@ -1,0 +1,25 @@
+<div class="row">
+  <ng-container *ngIf="isLoading; else loadingBlock">
+    <div class="center-align">
+      <mz-spinner [color]="'blue'" [size]="'big'"></mz-spinner>
+    </div>
+  </ng-container>
+
+  <ng-template #loadingBlock>
+    <div *ngIf="student; else studentBlock">
+      <h4>{{user.fullname | capitalize}}</h4>
+      <mz-tab [fixedTabWidth]="'true'">
+        <mz-tab-item [label]="'Editar alumno'">
+          <app-student-form [studentData]="studentData"></app-student-form>
+        </mz-tab-item>
+      </mz-tab>
+    </div>
+
+    <ng-template #studentBlock>
+      <div class="card-panel">
+        <h4>El alumno no existe</h4>
+      </div>
+    </ng-template>
+
+  </ng-template>
+</div>

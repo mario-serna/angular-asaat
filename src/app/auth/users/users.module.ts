@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterializeModule } from 'ng2-materialize';
+import { SharedCommonsModule } from '../../common/shared-commons.module';
 
 import { UsersService } from './services/users.service';
 
@@ -18,6 +19,7 @@ import { UserSearchComponent } from './user-search/user-search.component';
     CommonModule,
     FormsModule,
     MaterializeModule,
+    SharedCommonsModule,
     UsersRoutingModule
   ],
   declarations: [

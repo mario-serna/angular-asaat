@@ -28,8 +28,7 @@ export class UserNewComponent implements OnInit {
 
   saveUser(event: Event) {
     event.preventDefault();
-    /*this.users.push(this.user);
-    this.user = {};*/
+
     this._usersService.createUser(this.user).subscribe(
       (data) => {
         this.user = data;
